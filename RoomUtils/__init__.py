@@ -13,11 +13,6 @@ dice_res = []  # 用于存放结果 每个人的骰子数
 dice_point_statistic = [0, 0, 0, 0, 0, 0]
 
 
-def init_dice_point_statistic():
-    global dice_point_statistic
-    dice_point_statistic = [0, 0, 0, 0, 0, 0]
-
-
 def win_or_lose(is_1_activate, dice_num, dice_point_num) -> bool:
     if is_1_activate == 1:  # 赖子生效
         print("玩家骰子数：", dice_num)
@@ -36,20 +31,21 @@ def win_or_lose(is_1_activate, dice_num, dice_point_num) -> bool:
 
 def statistic_dices_num():
     global dice_point_statistic
+    dice_point_statistic = [0, 0, 0, 0, 0, 0]
     for i in dice_res:
         for j in i:
             if j == 1:
-                dice_point_statistic[0] += 1
+                dice_point_statistic[0] = dice_point_statistic[0] + 1
             elif j == 2:
-                dice_point_statistic[1] += 1
+                dice_point_statistic[1] = dice_point_statistic[1] + 1
             elif j == 3:
-                dice_point_statistic[2] += 1
+                dice_point_statistic[2] = dice_point_statistic[2] + 1
             elif j == 4:
-                dice_point_statistic[3] += 1
+                dice_point_statistic[3] = dice_point_statistic[3] + 1
             elif j == 5:
-                dice_point_statistic[4] += 1
+                dice_point_statistic[4] = dice_point_statistic[4] + 1
             elif j == 6:
-                dice_point_statistic[5] += 1
+                dice_point_statistic[5] = dice_point_statistic[5] + 1
     print("本轮所有玩家骰子统计结果:", dice_point_statistic)
 
 
@@ -139,7 +135,7 @@ class Room:
             player.send("请等待游戏开始:\n".encode(encoding='utf_8'))
 
     def play_game(self):
-        global dice_point_statistic
+        global dice_point_statistic, dice_res
         for i in self.players:
             i: PlayerUtils.Player
             i.conn.send("游戏开始，其他玩家无法继续加入本房间:\n".encode(encoding='utf_8'))
@@ -153,14 +149,13 @@ class Room:
         # @TODO 可以加一个调换顺序的功能，在这里就不实现了，有兴趣的同学可以加进来
         start: int = 0  # 第一个开始吹牛的人，简称庄家，这里先初始设置成创建房间的人，如果有需求的话需要增加上述功能TODO
         while True:
-
+            del dice_res[:]
+            dice_res = []
             for i in range(player_num):  # @TODO 这里要设置循环队列来保证游戏不会结束
                 self.players[i].shook_dices()
                 self.players[i].conn.send(
                     ("您本轮掷出的点数为:" + str(self.players[i].show_dices()) + "\n").encode(encoding='utf_8'))
                 dice_res.append(self.players[i].show_dices())  # 记录结果
-
-            init_dice_point_statistic()  # 清空记录列表
 
             statistic_dices_num()  # 每轮骰子掷完都进行统计
             flag = 0  # 记录本局是否为庄家

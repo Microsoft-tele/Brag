@@ -53,6 +53,15 @@ def process(conn: socket, remote_addr: any):
         elif choice == 2:
             print("准备加入房间:")
             conn.send("准备加入房间:\n".encode(encoding="utf_8"))
+            conn.send("请输入房间号:\n".encode(encoding='utf_8'))
+            data = conn.recv(BUFFER_SIZE).decode('utf8')
+            port = int(data)
+            print("用户输入的房间号是:", port, type(port))
+            client_socket = socket(AF_INET, SOCK_STREAM)
+            client_socket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+            addr_server = ('127.0.0.1', port)  # @TODO 这里记得修改成公网地址
+            client_socket.connect(addr_server)
+
         else:
             print("输入有误，请重新输入:")
             conn.send("输入有误，请重新输入:\n".encode(encoding="utf_8"))
