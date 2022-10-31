@@ -5,19 +5,20 @@
 
 #### 软件架构
 软件架构说明
-
+1.客户端：作为服务器可以运行在公网上
+2.客户端在本地启动即可
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. git clone https://gitee.com/liweijun0302/brag.git  || git clone https://github.com/liweijun0302/brag.git
+2. 在服务器上运行main.py
+3. 在本地运行client.py
+
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. 需要有一个玩家先向服务器请求房间号，然后所有玩家都可以接入这个房间
+2. 房主只需要按1就可以开始游戏
 
 #### 参与贡献
 
