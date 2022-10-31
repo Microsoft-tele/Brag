@@ -6,12 +6,12 @@ addr = ()
 while True:
     choice = int(input('1.创建房间:\n2.加入房间\n请输入您的选择:'))
     if choice == 1:
-        addr = ("127.0.0.1", 22222)
+        addr = ("106.14.187.13", 22222) # 公网地址
         break
     elif choice == 2:
         port = int(input('请输入房间号:'))
         print('输入的port:', port, type(port))
-        addr = ("127.0.0.1", port)
+        addr = ("106.14.187.13", port)
         break
     else:
         print('您的输入有误，请重新输入:')

@@ -94,7 +94,7 @@ class Room:
 
     def create_room(self, player_num: int):  # 需要创建房间的传入本房间的最大人数
         while True:
-            addr = ("127.0.0.1", self.room_id)
+            addr = ("0.0.0.0", self.room_id)  # 游戏房间的地址
             sock = socket(AF_INET, SOCK_STREAM)
             sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
             try:
