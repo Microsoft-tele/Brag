@@ -7,7 +7,7 @@ choice = 0
 while True:
     choice = int(input('1.创建房间:\n2.加入房间\n请输入您的选择:'))
     if choice == 1:
-        addr = ("106.14.187.13", 22222) # 公网地址
+        addr = ("106.14.187.13", 22222)  # 公网地址
         break
     elif choice == 2:
         port = int(input('请输入房间号:'))

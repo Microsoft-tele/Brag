@@ -24,9 +24,9 @@ def win_or_lose(is_1_activate, dice_num, dice_point_num) -> bool:
             return True
     else:  # 赖子不生效
         have_dic_point_num = dice_point_statistic[dice_point_num - 1]
-        if have_dic_point_num < dice_num:
-            print("下家赢")
-            return False
+        if have_dic_point_num >= dice_num:
+            print("上家赢")
+            return True
 
 
 def statistic_dices_num():
