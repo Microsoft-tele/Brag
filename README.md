@@ -10,7 +10,7 @@
 
 #### 安装教程
 
-1. git clone https://gitee.com/liweijun0302/brag.git  || git clone https://github.com/liweijun0302/brag.git
+1. git clone https://gitee.com/liweijun0302/brag.git  || git clone https://github.com/Microsoft-tele/Brag.git
 2. 在服务器上运行main.py
 3. 在本地运行client.py
 
