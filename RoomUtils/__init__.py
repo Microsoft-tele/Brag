@@ -179,6 +179,7 @@ class Room:
                     num_str: str = self.players[i].conn.recv(BUFFER_SIZE).decode('utf8')
                     num_list = num_str.split(' ')
                     dice_num = int(num_list[0])
+                    print("出错的地方:", num_list)
                     dice_point_num = int(num_list[1])
                     print(self.players[i].name[:-1], "的输入是:", dice_num, ":", dice_point_num, type(dice_num),
                           type(dice_point_num))
@@ -190,7 +191,8 @@ class Room:
                     while True:
                         self.players[i].conn.send("轮到您吹牛啦:\n输入[随意一个数]开上家\n输入[骰子数][骰子点数]自己吹牛\n例如：10个3 则输入 10 3\n"
                                                   "开始吹牛:\n".encode(encoding='utf_8'))
-                        num_str = self.players[i].conn.recv(BUFFER_SIZE).decode('utf8')
+                        num_str = self.players[i].conn.recv(BUFFER_SIZE).decode(
+                            'utf8')  # @TODO 此处需要添加控制用户输入格式的限制 必须是 {数字[1,6] 数字[1,6] 或 一个数字}
                         num_list = num_str.split(' ')
                         print(num_list)
                         if len(num_list) == 1:  # 如果玩家输入只有一个数就代表开上家
